@@ -47,7 +47,7 @@ yt-dlp \
   --embed-metadata \
   --parse-metadata "%(title)s:%(title)s" \
   --metadata-from-title "%(title)s" \
-  --post-processor-args "ffmpeg: -metadata artist=\"$ARTISTA_INPUT\" -metadata album=\"$DISCO_INPUT\"" \
+  --ppa "ExtractAudio:-metadata artist='$ARTISTA_INPUT' -metadata album='$DISCO_INPUT'" \
   "$PLAYLIST_URL"
 
 echo "✅ Descarga completada con éxito en: $CARPETA_DESTINO"
