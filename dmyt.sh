@@ -20,10 +20,11 @@ fi
 # Pedir los datos de organización para la carpeta y etiquetas
 read -p "Introduce el nombre del ARTISTA: " ARTISTA_INPUT
 read -p "Introduce el nombre del DISCO / ÁLBUM: " DISCO_INPUT
+read -p "Introduce el nombre del Genero:" GENERO_INPUT
 
 # Validar que no se dejen vacíos para evitar rutas extrañas
-if [ -z "$ARTISTA_INPUT" ] || [ -z "$DISCO_INPUT" ]; then
-    echo "❌ Error: El nombre del artista y del disco son obligatorios para organizar la carpeta."
+if [ -z "$ARTISTA_INPUT" ] || [ -z "$DISCO_INPUT" ] || [ -z "$GENERO_INPUT" ]; then
+    echo "❌ Error: El nombre del artista, del disco y del genero son obligatorios para organizar la carpeta."
     exit 1
 fi
 
@@ -47,7 +48,7 @@ yt-dlp \
   --embed-metadata \
   --parse-metadata "%(title)s:%(title)s" \
   --metadata-from-title "%(title)s" \
-  --ppa "ExtractAudio:-metadata artist='$ARTISTA_INPUT' -metadata album='$DISCO_INPUT'" \
+  --ppa "ExtractAudio:-metadata artist='$ARTISTA_INPUT' -metadata album='$DISCO_INPUT' -metadata genre='$GENERO_INPUT'" \
   "$PLAYLIST_URL"
 
 echo "✅ Descarga completada con éxito en: $CARPETA_DESTINO"
